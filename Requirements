@@ -1,0 +1,23 @@
+[] The data from the services are each rendered
+
+[] Quote (quote and author)
+
+[] Image (only the image is required, however feel free to include other data)
+
+[] The image should be on large display with at least one other element positioned over the top of the image.
+
+[] Weather (The temp is displayed, feel free to add other pieces)
+
+[X] Todo (the new todo form exists, and any todos are rendered GET)
+
+[X] A form to add a new todo can be accessed and when submitted the page does not reload.
+
+[X] Todo's can be added to a list (POST)
+
+[X] Todo's can be removed (DELETE)
+
+[X] Todo's can be marked complete (PUT)
+
+[] The todolist shows the total count of tasks currently being tracked
+
+[X] The todolist takes advantage of the TodoService to provide persistent data
