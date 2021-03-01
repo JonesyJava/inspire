@@ -43,6 +43,11 @@ class TodoService{
         }
     }
 
+    taskTotal(){
+        let tracked = ProxyState.todos.filter(t => t.completed !== true)
+        return tracked.length;
+    }
+
     async deleteTodo(_id){
         try {
             const res = await api.delete(`Jonesy/todos/` + _id)

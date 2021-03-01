@@ -9,6 +9,10 @@ function _draw(){
     console.log(ProxyState.todos)
 }
 
+function _drawTracked(){
+    document.getElementById('tracked').innerHTML = `${todoService.taskTotal()} Tasks Left`
+}
+
 
 export default class TodoController {
     constructor(){
@@ -16,7 +20,8 @@ export default class TodoController {
         console.log(ProxyState.todos)
         _draw()
         ProxyState.on("todos", _draw)
-        todoService.getTodos();
+        ProxyState.on("todos", _drawTracked)
+        todoService.getTodos()
         _draw()
     }
 
@@ -40,8 +45,10 @@ export default class TodoController {
         }
     }
 
+
     completed(_id){
         todoService.completed(_id)
+        _drawTracked
         
     }
 

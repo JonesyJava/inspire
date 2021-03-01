@@ -9,29 +9,60 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/style/main.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>inspire</title>
+    <title>Inspire</title>
 </head>
 
-<body class="container-fluid">
+<body class="container-fluid" id="background">
     <header>
-        <div class="row ">
+        <div class="row">
             <div class="col-md-2">
-                <h5>Links <i class="fa fa-search" aria-hidden="true"></i></h5>
+                <h1 class="text-light">Links <i class="fa fa-search" aria-hidden="true"></i></h1>
             </div>
-            <div class="col-md-2 offset-md-8">
-                <h5>Weather</h5>
+
+            <div class="col-md-2 offset-md-8" id="weather">
+
             </div>
         </div>
     </header>
 
     <main>
         <div class="row justify-content-center text-center bg-row">
-            <div class="col-md-6 center-content">
-                <h1>12:00</h1>
+            <div class="col-md-6 center-content card card-back rounded text-light">
+                <h1 id="ClockDisplay"></h1>
+                <script type="text/javascript">
+                    function _drawClock() {
+                        let date = new Date();
+                        let h = date.getHours();
+                        let m = date.getMinutes();
+                        let s = date.getSeconds();
+                        let session = "AM";
+
+                        if (h == 0) {
+                            h = 12;
+                        }
+
+                        if (h > 12) {
+                            h = h - 12;
+                            session = "PM"
+                        }
+
+                        h = (h < 10) ? 0 + h : h;
+                        m = (m < 10) ? 0 + m : m;
+                        s = (s < 10) ? 0 + s : s;
+
+                        let time = h + ":" + m + ":" + s + " " + session;
+                        document.getElementById("ClockDisplay").innerText = time;
+
+                        setTimeout(_drawClock, 1000)
+                    }
+                    _drawClock();
+                </script>
+
                 <h2>Hello, Jonesy.</h2>
                 <div class="row justify-content-center text-center">
-                    <div class="col-md-6">
-                        <h4>What is your main focus today?</h4>
+                    <div class="col-md-6" id="quotes">
+                        <h4>Content</h4>
+                        <h5>Author</h5>
                     </div>
                 </div>
             </div>
@@ -41,40 +72,38 @@
 
 
     <footer class="container-fluid">
-        <div class="row text-center">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <h5>Quotes Go HERE</h5>
-            </div>
+        <div class="row">
+            <div class="col-md-11"></div>
 
-
-            <div class="col-md-4">
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <div class="col-md-1">
+                <button type="button" class="btn btn-dark btn-lg modal-button" data-toggle="modal"
+                    data-target="#exampleModal">
                     TODO
                 </button>
-                <form class="form-inline" onsubmit="app.todoController.createTodoTask(event)">
-                    <input type="text" name="description">
-                    <button type="submit">Create Todo</button>
-                </form>
-
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="todo-title">TODO LIST</h5>
+                                <h3 class="modal-title" id="todo-title">TODO LIST</h3>
+
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <h5 class="text-center" id="tracked"></h5>
                             <div id="todos" class="modal-body" id="todos">
 
                             </div>
                             <div class="modal-footer">
+                                <div>
+                                    <form class="form" onsubmit="app.todoController.createTodoTask(event)">
+                                        <input type="text" name="description">
+                                        <button type="submit" class="btn btn-success">Create Todo</button>
+                                    </form>
+                                </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
